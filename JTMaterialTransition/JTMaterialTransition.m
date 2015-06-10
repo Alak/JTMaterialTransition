@@ -18,20 +18,15 @@
     
     NSAssert(animatedView != nil, @"animatedView cannot be nil");
     _animatedView = animatedView;
-    
-    return self;
-}
-
-- (void)setAnimatedView:(UIView *)animatedView
-{
-    _animatedView = animatedView;
     if(_animatedView) {
         NSAssert(_animatedView.superview != nil, @"animatedView must be attached to a superview");
         
         // Get the frame rect in the screen coordinates
-        self.startFrame = [_animatedView.superview convertRect:_animatedView.frame toView:nil];
-        self.startBackgroundColor = _animatedView.backgroundColor;
+        _startFrame = [_animatedView.superview convertRect:_animatedView.frame toView:nil];
+        _startBackgroundColor = _animatedView.backgroundColor;
     }
+    
+    return self;
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
